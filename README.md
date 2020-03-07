@@ -1,0 +1,1 @@
+This is a trading bot designed and developed by Elías Trenard García.
