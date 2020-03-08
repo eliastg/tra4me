@@ -1,0 +1,30 @@
+1-In a terminal the User executes the following command:
+
+python tbot.py --verbose --config=/path/to/config.ini
+
+2-In the terminal, it is shown the following output:
+
+Trading Bot (tbot)
+Starting at: <datetime>
+Config file: /path/to/config.ini
+Coin per: <coin-per>
+Strategy: <straategy>
+=====================
+tbot Execution BEGIN
+=====================
+
+<datetime> <coin-per>: <price>
+<datetime> <coin-per>: <price>
+<datetime> <coin-per>: <price>
+<datetime> <coin-per>: <price>
+<datetime> <coin-per>: <price>
+<datetime> <coin-per>: <price>
+...
+
+3- The User press CTRL+C.
+
+4- The bot stops is execution, showing the following lines in the terminal:
+
+=====================
+tbot Execution END
+=====================
