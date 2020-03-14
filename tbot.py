@@ -3,6 +3,7 @@
 #---------------------------------
 import sys
 import datetime
+import setup
 #---------------------------------
 def printInitializationMessage():
 	print('TBOT: (Trading Bot)')
@@ -25,12 +26,24 @@ def userPressCtrC():
 def getPrice():
 	print("<datetime> <coin-per>: <price>")
 
-#-------Main----------------------
-if __name__ == '__main__':
-	
-	printInitializationMessage()
 
-	while (userPressCtrC()):
-		price = getPrice()
-	
-	printFinalizationMessage()
+#-------Main----------------------
+if __name__ == '__main__':	
+	configuration = setup.Configuration()
+	configResult = configuration.load()
+	if not configResult:
+		print('ERROR: Wrong configuration.')
+		exit(1)
+		
+	# paramVerbose = true
+	# printInitializationMessage()
+
+	# broker = BrokerFactory(configuration)
+	# strategy = StretegyFactory(configuration)
+	# logger = Logger(configuration, paramVerbose)
+
+	# while (userPressCtrC()):
+	# 	price = broke.getPrice()
+	# 	logger.log(configuration.getPer() + "Price: "+str(price))
+
+	# printFinalizationMessage()
