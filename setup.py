@@ -23,7 +23,9 @@ class Configuration:
 			if a in sys.argv:
 				self.arguments[a] = True
 
-	def checkFileSintaxys():
+		return True
+
+	def checkFileSintaxys(self):
 		# For now
 		return True
 
@@ -36,5 +38,5 @@ class Configuration:
 		if len(readList) != 1:
 			print("ERROR: The configuration file cannot be read.")
 			return False
-		sel.configFile = file
+		self.configFile = file
 		return self.checkFileSintaxys()

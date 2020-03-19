@@ -1,0 +1,76 @@
+NAME
+	tbot
+
+SYNOPSIS
+	tbot.py <options>
+	tbot.py [--verbose] --config="/path/to/config/file.ini"
+
+DESCRIPTION
+	tbot comes from "Trading Bot". However this is a provisional name.
+
+	This a program to do trading operations in exchange platforms, 
+	utilizing REST API. This software is currently in development
+	stage. The only	supported exchange platforms so far is COINSBIT.
+
+OPTIONS:
+	--config	
+		Path to the configuration file. Thisis an INI file. 
+		See the "CONFIGURATION FILE" section to learn about this file.
+
+	--verbose	
+		Outputs information about every action performed by the bot.
+		
+	--test-data
+		The path of a CSV file with test data.
+		When this parameter is used the bot will behave in "advice" mode, giving an output 
+		of the operation that would be performed for such data, and then it will stop.
+		Example:
+			--test-data="/path/to/file.csv"
+		This is a CSV with a single columns, that has a float number in each line, indicating
+		the price.
+
+CONFIGURATION FILE
+	The configuration file is an INI file that define the parameters the bot needs
+	to operate. Most parameters are mandatory and it is defined as follows:
+
+	owner		(string) The full name of the person that owns the bot.
+				Example:
+				owner="Elías Trenard García"
+
+	mode		(string) Defines how the bot behaves and the range of his actions.
+				This a value from the following list.
+				"advice":		The bot just outputs the operation that it would be executed.
+								No operation is executed in this mode
+								This mode is meant to be a support tool for the human trader.
+				
+				"automata"		The bot execute real operations.
+
+	logdir		(string) The path of a directory in which the bot will create its log file.
+				Example:
+				logdir="/home/username/botlog"
+
+	strategy	(string) The strategy used by the bot to decide which operation must
+				be executed. This is a value from the following list:
+				
+				"vectorTrend":	This is an empirical strategy created by the author
+								This strategy determines the trend with vectors.
+	
+	tp			(integer) This is the Take Profit parameter. It is a number of PIP's.
+				The BUY operation will be closed once the price reaches a value 
+				bigger or equal to the entrance price plus the tp.
+				The SELL operation will be closed once the price reaches a value 
+				smaller or equal to the entrance price plus the tp.
+	
+	sl			(integer) This is the Stop Loss. It is a number of PIP's.
+				The BUY operation will be closed once the price reaches a value 
+				smaller or equal to the entrance price plus the tp.
+				The SELL operation will be closed once the price reaches a value 
+				bigger or equal to the entrance price plus the tp.
+	
+	lote		(float) The lote indicating the profit.
+
+BUGS
+	So far this is in development stage. We need to finish to have real bugs.
+
+AUTOR
+	Elías Trenard García eliastrenard@gmail.com

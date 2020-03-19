@@ -1,0 +1,5 @@
+TODO
+
+DONE-Debug python with script parameters in Visual Studio Code.
+
+DONE-TDD in python

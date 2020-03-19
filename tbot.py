@@ -34,6 +34,7 @@ if __name__ == '__main__':
 	if not configResult:
 		print('ERROR: Wrong configuration.')
 		exit(1)
+	print("Configuration loaded.")
 		
 	# paramVerbose = true
 	# printInitializationMessage()
