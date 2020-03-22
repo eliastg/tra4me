@@ -28,23 +28,11 @@ def getPrice():
 
 
 #-------Main----------------------
-if __name__ == '__main__':	
+if __name__ == '__main__':
 	configuration = setup.Configuration()
 	configResult = configuration.load()
 	if not configResult:
 		print('ERROR: Wrong configuration.')
 		exit(1)
-	print("Configuration loaded.")
-		
-	# paramVerbose = true
-	# printInitializationMessage()
-
-	# broker = BrokerFactory(configuration)
-	# strategy = StretegyFactory(configuration)
-	# logger = Logger(configuration, paramVerbose)
-
-	# while (userPressCtrC()):
-	# 	price = broke.getPrice()
-	# 	logger.log(configuration.getPer() + "Price: "+str(price))
-
-	# printFinalizationMessage()
+	print(configuration.getConfigOutput())
+	exit(0)

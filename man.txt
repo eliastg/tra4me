@@ -43,17 +43,25 @@ CONFIGURATION FILE
 								No operation is executed in this mode
 								This mode is meant to be a support tool for the human trader.
 				
-				"automata"		The bot execute real operations.
+				"automata"		The bot will be self sufficuent and will execute real operations,
+								utilicing your credentials.
 
-	logdir		(string) The path of a directory in which the bot will create its log file.
+	workdir		(string) The path of a directory in which the bot will create its
+				log files and other necessary files.
+				If this directory does not exists the program will output an error
+				notifying this.
 				Example:
-				logdir="/home/username/botlog"
+				logdir="/home/username/tbot-dir"
 
 	strategy	(string) The strategy used by the bot to decide which operation must
-				be executed. This is a value from the following list:
+				be executed. So far there is only one strategy available called 
+				"vectorTrend", defined as follows:
 				
-				"vectorTrend":	This is an empirical strategy created by the author
-								This strategy determines the trend with vectors.
+				"vectorTrend":	This strategy determines the trend with vectors.
+								This is an empirical strategy created by the author,
+								for development puposes. The author(s) do not take 
+								any responsibility for the effect this strategy could 
+								have in your assets. Use at your own risk.
 	
 	tp			(integer) This is the Take Profit parameter. It is a number of PIP's.
 				The BUY operation will be closed once the price reaches a value 
@@ -61,7 +69,7 @@ CONFIGURATION FILE
 				The SELL operation will be closed once the price reaches a value 
 				smaller or equal to the entrance price plus the tp.
 	
-	sl			(integer) This is the Stop Loss. It is a number of PIP's.
+	sl			(integer) This is the Stop Loss parameter. It is a number of PIP's.
 				The BUY operation will be closed once the price reaches a value 
 				smaller or equal to the entrance price plus the tp.
 				The SELL operation will be closed once the price reaches a value 
@@ -69,8 +77,17 @@ CONFIGURATION FILE
 	
 	lote		(float) The lote indicating the profit.
 
+	platform	(string) The trading plattform or broker.
+				So far there is only one possible value:
+				"coinsbit.io".
+
+	apikey		(string) The trading plattform API Key.
+
+	apisecret	(string) The trading platform API secret. 
+
 BUGS
-	So far this is in development stage. We need to finish to have real bugs.
+	So far this software is in development stage.
+	We need to finish it first to so we can have real bugs ;)
 
 AUTOR
 	Elías Trenard García eliastrenard@gmail.com

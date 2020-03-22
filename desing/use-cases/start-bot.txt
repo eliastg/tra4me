@@ -1,6 +1,6 @@
 1-In a terminal the User executes the following command:
 
-python tbot.py --verbose --config=/path/to/config.ini
+python tbot.py /path/to/config.ini
 
 2-In the terminal, it is shown the following output:
 
