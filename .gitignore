@@ -1,6 +1,10 @@
 # Directories
 
 # Files
+*.ini
 
 # IDE
 .vscode
+
+# Temporal files
+__pycache__/

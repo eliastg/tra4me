@@ -1,0 +1,11 @@
+TODO
+
+DONE-Debug python with script parameters in Visual Studio Code.
+
+Define al use cases.
+
+Learn Python's TDD.
+
+Define unit test Coverage.
+
+Organize code in packages.
