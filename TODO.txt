@@ -2,6 +2,16 @@ TODO
 
 DONE-Debug python with script parameters in Visual Studio Code.
 
+Ask in stackoverflow: 
+	¿Which trading platform can I use to test a trading bot?
+	This platform must have the following requirements:
+	-Trading API (REST)
+	-Demo account
+	-FOREX currencies trading like: EURUSD
+
+I have been trying coinsbit.io, and the API is very good. However, I still cannot find a demo account 
+option and I just see Crypto Currencies availables for trading.
+
 Check configuration file syntax. All the values types must match the documentation.
 
 Define all use cases.
