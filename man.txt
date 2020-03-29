@@ -21,13 +21,56 @@ OPTIONS:
 		Outputs information about every action performed by the bot.
 		
 	--test-data
-		The path of a CSV file with test data.
+		Executes a testing with historical data. After this parameter a path to a CSV file
+		must be specified. Such file must contain a price historical. See the TEST CSV FILE
+		section to know the file syntax.
 		When this parameter is used the bot will behave in "advice" mode, giving an output 
-		of the operation that would be performed for such data, and then it will stop.
+		of the operation that would be performed for such data in a specific moment,
+		and then it will stop.
 		Example:
-			--test-data="/path/to/file.csv"
-		This is a CSV with a single columns, that has a float number in each line, indicating
-		the price.
+			The parameter: 
+				--test-data /path/to/file.csv
+			Would give the following output:
+				Processing ...
+
+				Test BEGIN_________________
+
+				28-03-2020 09:16:05    BUY
+				28-03-2020 09:20:29    BUY
+				28-03-2020 10:06:19    SELL
+				28-03-2020 10:26:08    SELL
+				28-03-2020 10:31:10    BUY
+
+				Test END___________________
+
+		This option allows you to know how effective the the strategy could be, 
+		so you can adjust it. To do a more accurate test, it is adviced to know
+		what the correct answer would be before execute the test.
+
+TEST CSV FILE
+	The test file is CSV file. It contains two columns of data.
+	
+	The expected column separator is the comma: ,
+	The comma cannot be used in float values inside this file. 
+	This is importan to avoid ambiguity in the test process.
+	
+	The expected row separator is the line jump.
+
+	The fist column is a string that defines a date-time value, 
+	with the folowing format: 
+	
+	YYYY-MM-DD HH:MM:SS 
+	
+	Example: 2016-11-16 00:00:00
+
+	The second column is a float value, that defines a price.
+	The decimal separator must be the point
+	
+	Example: 685.91
+
+	An example of a valid line of the CSV file would be:
+	
+	2016-11-16 00:00:00,711.73 (This is a Bitcoin price sample taken from blockchain.com)
 
 CONFIGURATION FILE
 	The configuration file is an INI file that define the parameters the bot needs

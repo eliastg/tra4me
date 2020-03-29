@@ -2,7 +2,9 @@ TODO
 
 DONE-Debug python with script parameters in Visual Studio Code.
 
-Define al use cases.
+Check configuration file syntax. All the values types must match the documentation.
+
+Define all use cases.
 
 Learn Python's TDD.
 

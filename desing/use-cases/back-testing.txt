@@ -1,0 +1,18 @@
+1 In a terminal, the user execute the following command:
+
+	python3 tbot.py /path/to/config.ini --test-data /path/to/file.csv
+
+2 The terminal shows the following output:
+
+	Processing ...
+
+	Test BEGIN_________________
+
+	28-03-2020 09:16:05    BUY
+	28-03-2020 09:20:29    BUY
+	28-03-2020 10:06:19    SELL
+	28-03-2020 10:26:08    SELL
+	28-03-2020 10:31:10    BUY
+
+	Test END___________________
+
