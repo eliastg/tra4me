@@ -2,7 +2,7 @@ import setup
 import time
 import requests
 import tradingStrategy
-import tradingApi
+# import tradingApi
 
 class TBot:
 
@@ -47,105 +47,116 @@ class TBot:
 
 	def trade(self):
 		state = self.stateProcessing
-		self.strategy = tradingStrategy.TradingStrategyFactory.getStrategy(self.configuration)
-		self.apiService = tradingApi.TradingAPIFactory.getApi(self.configuration)
+		strategyFactory = tradingStrategy.TradingStrategyFactory()
+		self.strategy = strategyFactory.getStrategy(self.configuration)
+	# 	self.apiService = tradingApi.TradingAPIFactory.getApi(self.configuration)
 
-		while state != self.stateFinal:
+	# 	self.configuration.get
 
-			print("State: {}".format(state))
-			self.waitTime()
+	# 	if not self.strategy:
+	# 		print("ERROR: Error creating the strategy.")
+	# 		return False
+	# 	elif not apiService:
+	# 		print("ERROR: Error creating the API service.")
+	# 		return False
 
-			if state == self.stateProcessing:
-				state = self.actionStateProcessing(state)
+	# 	while state != self.stateFinal:
+
+	# 		print("State: {}".format(state))
+	# 		self.waitTime()
+
+	# 		if state == self.stateProcessing:
+	# 			state = self.actionStateProcessing(state)
 			
-			elif state == self.stateOperating:
-				state = self.actionStateOperating(state)
+	# 		elif state == self.stateOperating:
+	# 			state = self.actionStateOperating(state)
 
-			elif state == self.stateObserving:
-				state = self.actionStateObserving(state)
+	# 		elif state == self.stateObserving:
+	# 			state = self.actionStateObserving(state)
 
-			elif state == self.stateClosing:
-				state = self.actionStateClosing(state)
+	# 		elif state == self.stateClosing:
+	# 			state = self.actionStateClosing(state)
 
-			elif state == self.stateError:
-				state = self.actionStateError(state)
+	# 		elif state == self.stateError:
+	# 			state = self.actionStateError(state)
 		
-		self.actionStateFinal()
+	# 	return self.actionStateFinal()
+		
 
-	def tradingWindowsOpen(self):
-		return True
+	# def tradingWindowsOpen(self):
+	# 	return True
 
-	def actionStateProcessing(self, state):
-		try:
-			if not self.tradingWindowsOpen():
-				return self.stateFinal
+	# def actionStateProcessing(self, state):
+	# 	try:
+	# 		if not self.tradingWindowsOpen():
+	# 			return self.stateFinal
 
-			price = self.apiService.nextPrice()
-			if not price:
-				return self.stateProcessing
+	# 		price = self.apiService.nextPrice()
+	# 		if not price:
+	# 			return self.stateProcessing
 			
-			self.operation = self.strategy.nextOperation(price)
-			if not self.operation:
-				return self.stateProcessing
-		except:
-			print("An exception ocurred in the Processing state.")
-			return self.stateError
+	# 		self.operation = self.strategy.nextOperation(price)
+	# 		if not self.operation:
+	# 			return self.stateProcessing
+	# 	except:
+	# 		print("An exception ocurred in the Processing state.")
+	# 		return self.stateError
 
-		return self.stateOperating
+	# 	return self.stateOperating
 	
-	def actionStateOperating(self, state):
-		try:
-			if not self.tradingWindowsOpen():
-				return self.stateFinal
+	# def actionStateOperating(self, state):
+	# 	try:
+	# 		if not self.tradingWindowsOpen():
+	# 			return self.stateFinal
 
-			if not self.operation:
-				print("Mal function error: The Operating state has been reached without having a valid order.")
-				return self.stateError
+	# 		if not self.operation:
+	# 			print("Mal function error: The Operating state has been reached without having a valid order.")
+	# 			return self.stateError
 
-			if not self.operation.executed():
-				self.operation.execute()
+	# 		if not self.operation.executed():
+	# 			self.operation.execute()
 			
-			if self.operation.executionConfirmed():
-				return self.stateOperating
+	# 		if self.operation.executionConfirmed():
+	# 			return self.stateOperating
 
-		except:
-			print("An exception occurred in the Operating state.")
-			return self.stateError
+	# 	except:
+	# 		print("An exception occurred in the Operating state.")
+	# 		return self.stateError
 
-		return self.stateObserving
+	# 	return self.stateObserving
 
-	def actionStateObserving(self, state):
-		try:
-			if if not self.tradingWindowsOpen():
-				return self.stateFinal
+	# def actionStateObserving(self, state):
+	# 	try:
+	# 		if if not self.tradingWindowsOpen():
+	# 			return self.stateFinal
 			
-			if not self.operation.reachedTP_SL():
-				return self.stateObserving
-		except:
-			print("An exception occurred in the Observing state.")
-			return self.stateError
+	# 		if not self.operation.reachedTP_SL():
+	# 			return self.stateObserving
+	# 	except:
+	# 		print("An exception occurred in the Observing state.")
+	# 		return self.stateError
 
-		return self.stateClosing
+	# 	return self.stateClosing
 
-	def actionStateClosing(self, state):
-		try:
-			if not self.tradingWindowsOpen():
-				return self.stateFinal
+	# def actionStateClosing(self, state):
+	# 	try:
+	# 		if not self.tradingWindowsOpen():
+	# 			return self.stateFinal
 			
-			if not self.operation.closeRequested():
-				self.operation.close()
+	# 		if not self.operation.closeRequested():
+	# 			self.operation.close()
 			
-			if not self.operation.closed():
-				return self.stateClosing
-		except:
-			print("An exception occurred in the Closing state")
-			return self.stateError
+	# 		if not self.operation.closed():
+	# 			return self.stateClosing
+	# 	except:
+	# 		print("An exception occurred in the Closing state")
+	# 		return self.stateError
 		
-		self.balanceCheck()
-		return self.stateProcessing
+	# 	self.balanceCheck()
+	# 	return self.stateProcessing
 
-	def actionStateError(self, state):
-		return self.stateFinal
+	# def actionStateError(self, state):
+	# 	return self.stateFinal
 		
-	def actionStateFinal(self):
-		print("Trading activity stopped.")
+	# def actionStateFinal(self):
+	# 	print("Trading activity stopped.")

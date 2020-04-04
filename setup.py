@@ -19,6 +19,10 @@ class Configuration:
 		argHelp: False
 	}
 
+	iniSectionTrading = 'trading'
+	iniSectionBase = 'base'
+	iniKeyStrategy = 'strategy'
+
 	def parseArguments(self):
 		if len(sys.argv) < 2:
 			return False
@@ -72,3 +76,14 @@ class Configuration:
 		out += "Strategy: "+tradingSection['strategy']+endl
 		out += '_________________________'+endl
 		return out
+
+	def getStrategy(self):
+		"""Returns the strategy from the configuration file.
+		
+		Returns:
+			String -- The name of the strategy as it is in the configuration file.
+			Bool -- It will return false if there is no strategy defined.
+		"""
+		if not self.configFileIni:
+			return False
+		return self.configFileIni[self.iniSectionTrading][self.iniKeyStrategy]
