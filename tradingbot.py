@@ -63,7 +63,7 @@ class TBot:
 		while state != self.stateFinal:
 
 			print("State: {}".format(state))
-			self.waitTime()
+			# self.waitTime()
 
 			if state == self.stateProcessing:
 				state = self.actionStateProcessing(state)
@@ -91,15 +91,18 @@ class TBot:
 			if not self.tradingWindowsOpen():
 				return self.stateFinal
 
-			price = self.apiService.nextPrice()
-			print("Price : "+str(price))
-			if type(price) != float:
-				return self.stateError
+			price = self.apiService.getPrice()
 			
+			if type(price) == bool and not price:
+				if not self.configuration.isTest():
+					return self.stateError
+				return self.stateFinal
+			
+			print("{} Price: {}".format(str(price[0]), str(price[1])))
 			self.operation = self.strategy.nextOperation(price)
 			if not self.operation:
 				return self.stateProcessing
-		except:
+		except Exception as e:
 			print("An exception ocurred in the Processing state.")
 			return self.stateError
 

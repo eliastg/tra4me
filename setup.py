@@ -113,3 +113,6 @@ class Configuration:
 
 	def isTest(self):
 		return self.arguments[self.argTestData]
+
+	def getTestFilePath(self):
+		return self.csvTestFilePath
