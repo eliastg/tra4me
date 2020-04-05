@@ -22,6 +22,7 @@ class Configuration:
 	iniSectionTrading = 'trading'
 	iniSectionBase = 'base'
 	iniKeyStrategy = 'strategy'
+	iniKeyPlatform = 'platform'
 
 	def parseArguments(self):
 		if len(sys.argv) < 2:
@@ -87,3 +88,14 @@ class Configuration:
 		if not self.configFileIni:
 			return False
 		return self.configFileIni[self.iniSectionTrading][self.iniKeyStrategy]
+
+	def getPlatform(self):
+		"""Returns the platform from the configuration file.
+		
+		Returns:
+			String -- The name of the platform defined in the configuration file.
+			Bool -- It will return False if there is no strategy defined.
+		"""
+		if not self.configFileIni:
+			return False
+		return self.configFileIni[self.iniSectionTrading][self.iniKeyPlatform]

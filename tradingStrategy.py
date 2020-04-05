@@ -1,5 +1,4 @@
 import setup
-import vectortrend
 
 
 class TradingStrategy:
@@ -19,10 +18,11 @@ class VectorTrend(TradingStrategy):
 
 
 class TradingStrategyFactory:
-	"""Creates strategies from setup.Configuration object.
+	"""Creates trading strategies from setup.Configuration object.
 	"""
+
 	definedStrategies = {
-		'vectorTrend': vectortrend.VectorTrend
+		'vectorTrend': VectorTrend
 	}
 
 	def getStrategy(self, botConfiguration):
@@ -40,7 +40,7 @@ class TradingStrategyFactory:
 		
 		strategy = botConfiguration.getStrategy()
 		
-		if not strategy or not strategy in self.definedStrategies:
+		if not strategy or not strategy in self.definedStrategies.keys():
 			return False
 		
 		strategy = self.definedStrategies[strategy]()

@@ -2,7 +2,7 @@ import setup
 import time
 import requests
 import tradingStrategy
-# import tradingApi
+import tradingApi
 
 class TBot:
 
@@ -48,8 +48,9 @@ class TBot:
 	def trade(self):
 		state = self.stateProcessing
 		strategyFactory = tradingStrategy.TradingStrategyFactory()
+		tradingApiFactory = tradingApi.TradingAPIFactory()
 		self.strategy = strategyFactory.getStrategy(self.configuration)
-	# 	self.apiService = tradingApi.TradingAPIFactory.getApi(self.configuration)
+		self.apiService = tradingApiFactory.getApi(self.configuration)
 
 	# 	self.configuration.get
 
