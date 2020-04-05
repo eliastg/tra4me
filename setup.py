@@ -5,18 +5,22 @@ import time
 
 class Configuration:
 	configFilePath = ''
+	csvTestFilePath = ''
 	configFileIni = None
 
 	argVerbose = '--verbose'
 	argQuiet = '--quite'
 	# argConfig = '--config'
 	argHelp = '--help'
+	argTestData = '--test-data' #--test-data /path/to/file.csv
+
 
 	arguments = {
 		argVerbose: True,
 		argQuiet: False,
 		# argConfig: 'config.ini',
-		argHelp: False
+		argHelp: False,
+		argTestData: False
 	}
 
 	iniSectionTrading = 'trading'
@@ -27,16 +31,23 @@ class Configuration:
 	def parseArguments(self):
 		if len(sys.argv) < 2:
 			return False
-		boolArgs = [self.argHelp, self.argQuiet, self.argVerbose]
+		boolArgs = [self.argHelp, self.argQuiet, self.argVerbose, self.argTestData]
 		for a in sys.argv:
 			if a == sys.argv[0]:
 				continue
 			if a in boolArgs:
 				self.arguments[a] = True
-			else:
+			elif self.getExtension(a) == 'ini':
 				self.configFilePath = a
+			elif self.getExtension(a) == 'csv':
+				self.csvTestFilePath = a
 		
 		return (self.configFilePath != '')
+
+	def getExtension(self, a):
+		if type(a) != str or len(a) < 5:
+			return False
+		return a[len(a)-3:]  
 
 	def checkFileSintaxys(self):
 		# For now
@@ -99,3 +110,6 @@ class Configuration:
 		if not self.configFileIni:
 			return False
 		return self.configFileIni[self.iniSectionTrading][self.iniKeyPlatform]
+
+	def isTest(self):
+		return self.arguments[self.argTestData]

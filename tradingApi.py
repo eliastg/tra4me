@@ -6,6 +6,9 @@ class TradingApi:
 	def __init__(self):
 		print("TadingApi created.")
 
+	def nextPrice(self):
+		return 0.0
+
 
 class CoinsbitApi(TradingApi):
 	"""Trading API for www.coinsbit.io
@@ -14,6 +17,12 @@ class CoinsbitApi(TradingApi):
 	def __init__(self):
 		print("CoinsbitApi created.")
 
+class CsvApi(TradingApi):
+	"""Reads from a CSV test data file instead of consume a real API.
+	This class is meant for Back Testing purposes. 
+	"""
+	def __init__(self):
+		print("CsvApi created")
 
 class TradingAPIFactory:
 	"""Creates trading API's from setup.Configuration object.
@@ -37,6 +46,9 @@ class TradingAPIFactory:
 		if not botConfiguration:
 			return False
 		
+		if botConfiguration.isTest():
+			return CsvApi()
+
 		platform = botConfiguration.getPlatform()
 		if not platform or not platform in self.definedApis.keys():
 			return False

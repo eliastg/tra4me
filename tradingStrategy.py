@@ -7,6 +7,9 @@ class TradingStrategy:
 	def __init__(self):
 		print("TradingStratedy created.")
 
+	def nextOperation(self, price):
+		return False
+
 class VectorTrend(TradingStrategy):
 	"""This is a strategy that uses vectors and naive analytics to detect a trend.
 	This strategy was created by Elías Trenard García with development purposes,

@@ -3,6 +3,7 @@ test/
 
 # Files
 *.ini
+*.csv
 
 # IDE
 .vscode
