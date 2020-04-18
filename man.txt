@@ -1,16 +1,16 @@
 NAME
-	tbot
+	tra4me
 
 SYNOPSIS
-	tbot.py <options>
-	tbot.py [--verbose] --config="/path/to/config/file.ini"
+	tra4me.py <options>
+	tra4me.py [--verbose] --config="/path/to/config/file.ini"
 
 DESCRIPTION
-	tbot comes from "Trading Bot". However this is a provisional name.
+	tra4me comes from the phrase "Trade for me".
 
-	This a program to do trading operations in exchange platforms, 
+	This is a program to do trading operations in exchange platforms, 
 	utilizing REST API. This software is currently in development
-	stage. The only	supported exchange platforms so far is COINSBIT.
+	stage.
 
 OPTIONS:
 	--config	
@@ -94,7 +94,7 @@ CONFIGURATION FILE
 				If this directory does not exists the program will output an error
 				notifying this.
 				Example:
-				logdir="/home/username/tbot-dir"
+				logdir="/home/username/tra4me-dir"
 
 	strategy	(string) The strategy used by the bot to decide which operation must
 				be executed. So far there is only one strategy available called 

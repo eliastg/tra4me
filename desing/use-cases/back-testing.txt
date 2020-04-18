@@ -1,6 +1,6 @@
 1 In a terminal, the user execute the following command:
 
-	python3 tbot.py /path/to/config.ini --test-data /path/to/file.csv
+	python3 tra4me.py /path/to/config.ini --test-data /path/to/file.csv
 
 2 The terminal shows the following output:
 

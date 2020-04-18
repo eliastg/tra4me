@@ -4,7 +4,7 @@ import requests
 import tradingStrategy
 import tradingApi
 
-class TBot:
+class TradingBot:
 
 	configuration = None
 

@@ -67,18 +67,13 @@ class Configuration:
 		return self.checkFileSintaxys()
 
 	def getConfigOutput(self):
-		# Trading Bot (tbot)
-		# Starting at: <datetime>
-		# Config file: /path/to/config.ini
-		# Coin per: <coin-per>
-		# Strategy: <straategy>
 		endl = '\r\n'
 		baseSection = self.configFileIni['base']
 		tradingSection = self.configFileIni['trading']
 		dtnow = datetime.datetime.fromtimestamp(time.time())
 
 		out = '__________________________'+endl
-		out += "Trading Bot (tbot)"+endl
+		out += "tra4me bot has started"+endl
 		out += "Start date-time: "+"{}/{}/{} {}:{}:{}".format(
 			dtnow.year,dtnow.month,dtnow.day,
 			dtnow.hour,dtnow.minute,dtnow.second

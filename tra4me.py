@@ -6,5 +6,5 @@ import tradingbot
 #-------Main----------------------
 if __name__ == '__main__':
 	
-	tbot = tradingbot.TBot()
-	tbot.start()
+	bot = tradingbot.TradingBot()
+	bot.start()
