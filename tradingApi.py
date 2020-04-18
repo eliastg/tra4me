@@ -35,6 +35,10 @@ class CsvApi(TradingApi):
 		TradingApi.__init__(self, botConfiguration)
 		self._testFile = open(self.configuration.getTestFilePath(), 'r')
 		print("CsvApi created")
+
+	def __del__(self):
+		if self._testFile:
+			self._testFile.close()
 	
 	def getPrice(self):
 		if not self._testFile:
