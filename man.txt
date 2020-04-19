@@ -2,8 +2,7 @@ NAME
 	tra4me
 
 SYNOPSIS
-	tra4me.py <options>
-	tra4me.py [--verbose] --config="/path/to/config/file.ini"
+	tra4me.py <config-file> <options>
 
 DESCRIPTION
 	tra4me comes from the phrase "Trade for me".
@@ -78,7 +77,7 @@ CONFIGURATION FILE
 
 	owner		(string) The full name of the person that owns the bot.
 				Example:
-				owner = Elías Trenard García
+				owner = John Doe
 
 	mode		(string) Defines how the bot behaves and the range of his actions.
 				The value must be one of the next:
@@ -97,14 +96,11 @@ CONFIGURATION FILE
 				logdir = /home/username/tra4me-dir
 
 	strategy	(string) The strategy used by the bot to decide which operation must
-				be executed. So far there is only one strategy available called 
-				"vectorTrend", defined as follows:
-				
-				vectorTrend:	This strategy determines the trend with vectors.
-								This is an empirical strategy created by the author,
-								for development puposes. The author do not take 
-								any responsibility by the effect of this strategy 
-								in your assets. Use at your own risk.
+				be executed. So far these are the available strategies:
+					
+					"mean-reversion"	A strategy based on the existence of an average value
+										for the price, to which it can return to. The analytics
+										uses a moving average approach.
 	
 	tp			(integer) This is the Take Profit parameter. It is a number of PIP's.
 				The BUY operation will be closed once the price reaches a value 
