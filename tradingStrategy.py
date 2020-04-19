@@ -10,13 +10,12 @@ class TradingStrategy:
 	def nextOperation(self, price):
 		return False
 
-class VectorTrend(TradingStrategy):
-	"""This is a strategy that uses vectors and naive analytics to detect a trend.
-	This strategy was created by Elías Trenard García with development purposes,
-	it is not a valid strategy. Used under your own responsability.
+class MeanReversion(TradingStrategy):
+	"""This strategy based on the existence of an average value for the price, 
+	to which it can return to. The analytics uses a moving average approach.
 	"""
 	def __init__(self):
-		print("VectorsTrend strategy created.")
+		print("MeanReversion strategy created.")
 
 
 
@@ -25,7 +24,7 @@ class TradingStrategyFactory:
 	"""
 
 	definedStrategies = {
-		'vectorTrend': VectorTrend
+		"mean-reversion": MeanReversion
 	}
 
 	def getStrategy(self, botConfiguration):
@@ -46,5 +45,4 @@ class TradingStrategyFactory:
 		if not strategy or not strategy in self.definedStrategies.keys():
 			return False
 		
-		strategy = self.definedStrategies[strategy]()
-		return strategy
+		return self.definedStrategies[strategy]()

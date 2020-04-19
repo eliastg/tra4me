@@ -11,7 +11,7 @@ class TradingApi:
 		if not botConfiguration:
 			raise Exception('No valid configuration object to create TradingApi')
 		self.configuration = botConfiguration
-		print("TadingApi created.")
+		print("TradingApi created.")
 
 	def getPrice(self):
 		return 0.0
