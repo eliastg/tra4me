@@ -13,16 +13,16 @@ DESCRIPTION
 	stage.
 
 OPTIONS:
-	--config	
-		Path to the configuration file. Thisis an INI file. 
+	--config <inifile>
+		Path to the configuration file. This must be in INI configuration format. 
 		See the "CONFIGURATION FILE" section to learn about this file.
 
 	--verbose	
 		Outputs information about every action performed by the bot.
 		
-	--test-data
+	--test-data <csvfile>
 		Executes a testing with historical data. After this parameter a path to a CSV file
-		must be specified. Such file must contain a price historical. See the TEST CSV FILE
+		must be specified. Such file must contain a historical price. See the TEST CSV FILE
 		section to know the file syntax.
 		When this parameter is used the bot will behave in "advice" mode, giving an output 
 		of the operation that would be performed for such data in a specific moment,
@@ -43,7 +43,7 @@ OPTIONS:
 
 				Test END___________________
 
-		This option allows you to know how effective the the strategy could be, 
+		This option allows you to know how effective the strategy could be, 
 		so you can adjust it. To do a more accurate test, it is adviced to know
 		what the correct answer would be before execute the test.
 
@@ -52,7 +52,7 @@ TEST CSV FILE
 	
 	The expected column separator is the comma: ,
 	The comma cannot be used in float values inside this file. 
-	This is importan to avoid ambiguity in the test process.
+	This is importan to avoid errors in the test process.
 	
 	The expected row separator is the line jump.
 
@@ -78,33 +78,33 @@ CONFIGURATION FILE
 
 	owner		(string) The full name of the person that owns the bot.
 				Example:
-				owner="Elías Trenard García"
+				owner = Elías Trenard García
 
 	mode		(string) Defines how the bot behaves and the range of his actions.
-				This a value from the following list.
-				"advice":		The bot just outputs the operation that it would be executed.
-								No operation is executed in this mode
-								This mode is meant to be a support tool for the human trader.
+				The value must be one of the next:
+				advice:		The bot just outputs the operation that it would be executed.
+							No operation is executed in this mode
+							This mode is meant to be a support tool for the human trader.
 				
-				"automata"		The bot will be self sufficuent and will execute real operations,
-								utilicing your credentials.
+				automata:	The bot will be self sufficient and will execute real operations,
+							using your credentials.
 
 	workdir		(string) The path of a directory in which the bot will create its
 				log files and other necessary files.
 				If this directory does not exists the program will output an error
 				notifying this.
 				Example:
-				logdir="/home/username/tra4me-dir"
+				logdir = /home/username/tra4me-dir
 
 	strategy	(string) The strategy used by the bot to decide which operation must
 				be executed. So far there is only one strategy available called 
 				"vectorTrend", defined as follows:
 				
-				"vectorTrend":	This strategy determines the trend with vectors.
+				vectorTrend:	This strategy determines the trend with vectors.
 								This is an empirical strategy created by the author,
-								for development puposes. The author(s) do not take 
-								any responsibility for the effect this strategy could 
-								have in your assets. Use at your own risk.
+								for development puposes. The author do not take 
+								any responsibility by the effect of this strategy 
+								in your assets. Use at your own risk.
 	
 	tp			(integer) This is the Take Profit parameter. It is a number of PIP's.
 				The BUY operation will be closed once the price reaches a value 
@@ -132,5 +132,5 @@ BUGS
 	So far this software is in development stage.
 	We need to finish it first to so we can have real bugs ;)
 
-AUTOR
+AUTHOR
 	Elías Trenard García eliastrenard@gmail.com
