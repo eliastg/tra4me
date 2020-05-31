@@ -2,6 +2,7 @@ import sys
 import configparser
 import datetime
 import time
+import os
 
 class Configuration:
 	configFilePath = ''
@@ -52,9 +53,25 @@ class Configuration:
 	def checkFileSintaxys(self):
 		# For now
 		return True
+	
+	def showHelp(self):
+		scriptFile = os.path.realpath(__file__)
+		scriptDir = os.path.dirname(scriptFile)
+		manPath = scriptDir + os.sep + "man.txt"
+		manFile = open(manPath, "r")
+		if manFile.mode == "r":
+			print(manFile.read())
+			exit(0)
+		print("ERROR: Manual not found.")
+		exit(1)
 
 	def load(self):
-		if not self.parseArguments():
+		parseStatus = self.parseArguments()
+		if self.arguments[self.argHelp] == True:
+			# this funcion ends the program
+			self.showHelp()
+
+		if not parseStatus:
 			print("WARNING: Missing arguments. Default configuration will be loaded.")
 			return False
 
