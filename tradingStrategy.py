@@ -14,8 +14,33 @@ class MeanReversion(TradingStrategy):
 	"""This strategy based on the existence of an average value for the price, 
 	to which it can return to. The analytics uses a moving average approach.
 	"""
+	_price = []
+	_meanPriceLenght = 100
+	_priceMovemenLength = 30
+	_meanPrice = []
+	_priceMovement = []
+
 	def __init__(self):
 		print("MeanReversion strategy created.")
+
+	def nextOperation(self, price):
+		
+		self._price.append(price)
+		self.calculatePriceMA()
+		
+		if len(self._meanPrice < self._meanPriceLenght or len(self._priceMovement) < )
+			return False
+
+		stdDeviation = self.getPriceStdDeviation()
+		movementDifference = abs(self._price[len(self._price)-1] - self._priceMovement[len(self._priceMovement)-1])
+
+		if movementDifference > stdDeviation+1:
+			return BuyOperation(price)
+		
+		elif movementDifference < stdDeviation+1:
+			return SellOperation(price)
+
+		return False
 
 
 
