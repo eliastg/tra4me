@@ -1,136 +1,135 @@
 NAME
-	tra4me
+    tra4me
 
 SYNOPSIS
-	tra4me.py <options>
-	tra4me.py [--verbose] --config="/path/to/config/file.ini"
+    tra4me.py <options>
+    tra4me.py [--verbose] --config="/path/to/config/file.ini"
 
 DESCRIPTION
-	tra4me comes from the phrase "Trade for me".
+    tra4me comes from the phrase "Trade for me".
 
-	This is a program to do trading operations in exchange platforms, 
-	utilizing REST API. This software is currently in development
-	stage.
+    This is a program to do trading operations in exchange platforms, 
+    utilizing REST API. This software is currently in development
+    stage.
 
 OPTIONS:
-	--config <inifile>
-		Path to the configuration file. This must be in INI configuration format. 
-		See the "CONFIGURATION FILE" section to learn about this file.
+    --config <inifile>
+        Path to the configuration file. This must be in INI configuration format. 
+        See the "CONFIGURATION FILE" section to learn about this file.
 
-	--verbose	
-		Outputs information about every action performed by the bot.
-		
-	--test-data <csvfile>
-		Executes a testing with historical data. After this parameter a path to a CSV file
-		must be specified. Such file must contain a historical price. See the TEST CSV FILE
-		section to know the file syntax.
-		When this parameter is used the bot will behave in "advice" mode, giving an output 
-		of the operation that would be performed for such data in a specific moment,
-		and then it will stop.
-		Example:
-			The parameter: 
-				--test-data /path/to/file.csv
-			Would give the following output:
-				Processing ...
+    --verbose    
+        Outputs information about every action performed by the bot.
+        
+    --test-data <csvfile>
+        Executes a testing with historical data. After this parameter a path to a CSV file
+        must be specified. Such file must contain a historical price. See the TEST CSV FILE
+        section to know the file syntax.
+        When this parameter is used the bot will behave in "advice" mode, giving an output 
+        of the operation that would be performed for such data in a specific moment,
+        and then it will stop.
+        Example:
+            The parameter: 
+                --test-data /path/to/file.csv
+            Would give the following output:
+                Processing ...
 
-				Test BEGIN_________________
+                Test BEGIN_________________
 
-				28-03-2020 09:16:05    BUY
-				28-03-2020 09:20:29    BUY
-				28-03-2020 10:06:19    SELL
-				28-03-2020 10:26:08    SELL
-				28-03-2020 10:31:10    BUY
+                28-03-2020 09:16:05    BUY
+                28-03-2020 09:20:29    BUY
+                28-03-2020 10:06:19    SELL
+                28-03-2020 10:26:08    SELL
+                28-03-2020 10:31:10    BUY
 
-				Test END___________________
+                Test END___________________
 
-		This option allows you to know how effective the strategy could be, 
-		so you can adjust it. To do a more accurate test, it is adviced to know
-		what the correct answer would be before execute the test.
+        This option allows you to know how effective the strategy could be, 
+        so you can adjust it. To do a more accurate test, it is adviced to know
+        what the correct answer would be before execute the test.
 
 TEST CSV FILE
-	The test file is CSV file. It contains two columns of data.
-	
-	The expected column separator is the comma: ,
-	The comma cannot be used in float values inside this file. 
-	This is importan to avoid errors in the test process.
-	
-	The expected row separator is the line jump.
+    The test file is CSV file. It contains two columns of data.
+    
+    The expected column separator is the comma: ,
+    The comma cannot be used in float values inside this file. 
+    This is importan to avoid errors in the test process.
+    
+    The expected row separator is the line jump.
 
-	The fist column is a string that defines a date-time value, 
-	with the folowing format: 
-	
-	YYYY-MM-DD HH:MM:SS 
-	
-	Example: 2016-11-16 00:00:00
+    The fist column is a string that defines a date-time value, 
+    with the folowing format: 
+    
+    YYYY-MM-DD HH:MM:SS 
+    
+    Example: 2016-11-16 00:00:00
 
-	The second column is a float value, that defines a price.
-	The decimal separator must be the point
-	
-	Example: 685.91
+    The second column is a float value, that defines a price.
+    The decimal separator must be the point
+    
+    Example: 685.91
 
-	An example of a valid line of the CSV file would be:
-	
-	2016-11-16 00:00:00,711.73 (This is a Bitcoin price sample taken from blockchain.com)
+    An example of a valid line of the CSV file would be:
+    
+    2016-11-16 00:00:00,711.73 (This is a Bitcoin price sample taken from blockchain.com)
 
 CONFIGURATION FILE
-	The configuration file is an INI file that define the parameters the bot needs
-	to operate. Most parameters are mandatory and it is defined as follows:
+    The configuration file is an INI file that define the parameters the bot needs
+    to operate. Most parameters are mandatory and it is defined as follows:
 
-	owner		(string) The full name of the person that owns the bot.
-				Example:
-				owner = Elías Trenard García
+    owner       (string) The full name of the person that owns the bot.
+                    Example:
+                    owner = Elías Trenard García
 
-	mode		(string) Defines how the bot behaves and the range of his actions.
-				The value must be one of the next:
-				advice:		The bot just outputs the operation that it would be executed.
-							No operation is executed in this mode
-							This mode is meant to be a support tool for the human trader.
-				
-				automata:	The bot will be self sufficient and will execute real operations,
-							using your credentials.
+    mode        (string) Defines how the bot behaves and the range of his actions.
+                    The value must be one of the next:
+                    advice:     The bot just outputs the operation that it would be executed.
+                                No operation is executed in this mode
+                                This mode is meant to be a support tool for the human trader.
+                    
+                    automata:   The bot will be self sufficient and will execute real operations,
+                                using your credentials.
 
-	workdir		(string) The path of a directory in which the bot will create its
-				log files and other necessary files.
-				If this directory does not exists the program will output an error
-				notifying this.
-				Example:
-				logdir = /home/username/tra4me-dir
+    workdir     (string) The path of a directory in which the bot will create its
+                    log files and other necessary files.
+                    If this directory does not exists the program will display an error related.
+                    Example:
+                    logdir = /home/username/tra4me-dir
 
-	strategy	(string) The strategy used by the bot to decide which operation must
-				be executed. So far there is only one strategy available called 
-				"vectorTrend", defined as follows:
-				
-				vectorTrend:	This strategy determines the trend with vectors.
-								This is an empirical strategy created by the author,
-								for development puposes. The author do not take 
-								any responsibility by the effect of this strategy 
-								in your assets. Use at your own risk.
-	
-	tp			(integer) This is the Take Profit parameter. It is a number of PIP's.
-				The BUY operation will be closed once the price reaches a value 
-				bigger or equal to the entrance price plus the tp.
-				The SELL operation will be closed once the price reaches a value 
-				smaller or equal to the entrance price plus the tp.
-	
-	sl			(integer) This is the Stop Loss parameter. It is a number of PIP's.
-				The BUY operation will be closed once the price reaches a value 
-				smaller or equal to the entrance price plus the tp.
-				The SELL operation will be closed once the price reaches a value 
-				bigger or equal to the entrance price plus the tp.
-	
-	lote		(float) The lote indicating the profit.
+    strategy    (string) The strategy used by the bot to decide which operation must
+                    be executed. So far there is only one strategy available called 
+                    "vectorTrend", defined as follows:
+                    
+                    vectorTrend:    This strategy determines the trend with vectors.
+                                    This is an empirical strategy created by the author,
+                                    for development puposes. The author do not take 
+                                    any responsibility by the effect of this strategy 
+                                    in your assets. Use at your own risk.
+    
+    tp          (integer) This is the Take Profit parameter. It is a number of PIP's.
+                    The BUY operation will be closed once the price reaches a value 
+                    bigger or equal to the entrance price plus the tp.
+                    The SELL operation will be closed once the price reaches a value 
+                    smaller or equal to the entrance price plus the tp.
+    
+    sl          (integer) This is the Stop Loss parameter. It is a number of PIP's.
+                    The BUY operation will be closed once the price reaches a value 
+                    smaller or equal to the entrance price plus the tp.
+                    The SELL operation will be closed once the price reaches a value 
+                    bigger or equal to the entrance price plus the tp.
+    
+    lote        (float) The lote indicating the profit.
 
-	platform	(string) The trading plattform or broker.
-				So far there is only one possible value:
-				"coinsbit.io".
+    platform    (string) The trading plattform or broker.
+                    So far there is only one possible value:
+                    "coinsbit.io".
 
-	apikey		(string) The trading plattform API Key.
+    apikey      (string) The trading plattform API Key.
 
-	apisecret	(string) The trading platform API secret. 
+    apisecret   (string) The trading platform API secret. 
 
 BUGS
-	So far this software is in development stage.
-	We need to finish it first to so we can have real bugs ;)
+    So far this software is in development stage.
+    We need to finish it first to so we can have real bugs ;)
 
 AUTHOR
-	Elías Trenard García eliastrenard@gmail.com
+    Elías Trenard García eliastrenard@gmail.com
